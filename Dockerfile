@@ -1,4 +1,3 @@
-$ cat Dockerfile
 FROM ubuntu:16.04
  
 MAINTAINER Inamy
