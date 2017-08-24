@@ -2,6 +2,9 @@ FROM ubuntu:16.04
  
 MAINTAINER Inamy
 
+# Pre Install
+RUN apt-get update && apt-get -y install sudo
+
 # Clang
 RUN sudo apt-get update && apt-get upgrade -y
 RUN sudo deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main
