@@ -17,9 +17,7 @@ RUN sudo apt-get update
 RUN sudo apt-get install gcc-6 g++-6 -y
 
 # Clang
-RUN sudo apt-get update
-RUN sudo apt-get adv --keyserver keyserver.ubuntu.com --recv-keys 15CF4D18AF4F7421
-RUN sudo apt-get update
+RUN sudo apt-get update && apt-get upgrade -y
 RUN echo 'deb http://apt-get.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' > /etc/apt-get/sources.list.d/llvm.list
 RUN echo 'deb-src http://apt-get.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' >> /etc/apt-get/sources.list.d/llvm.list
 RUN sudo apt-get update
