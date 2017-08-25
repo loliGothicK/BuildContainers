@@ -63,8 +63,8 @@ RUN cmake -G "Unix Makefiles" -DLIBCXX_CXX_ABI=libstdc++ \
       -DLIBCXX_LIBSUPCXX_INCLUDE_PATHS="$CPP_INCLUDE_PATHS" \
       -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
       -DLLVM_CONFIG_PATH=/usr/bin/llvm-config-4.0 \
-      -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include  ..
-make install
+      -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include  .. \
+&& make install
 
 RUN cd /tmp/libcxx/build
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
