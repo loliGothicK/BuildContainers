@@ -21,14 +21,14 @@ RUN sudo apt-get update && apt-get upgrade -y
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y vim curl && \
  curl -q http://apt.llvm.org/llvm-snapshot.gpg.key |apt-key add -
 
-RUN cat > /etc/apt/sources.list.d/llvm-repos.list <<EOF \
- deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main \
- deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main \
- deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main \
- deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main \
- deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main \
- deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main \
- EOF
+RUN cat << EOF > /etc/apt/sources.list.d/llvm-repos.list  \
+deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main \
+deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main \
+deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main \
+deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main \
+deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main \
+deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main \
+EOF
 
 RUN apt-get update && apt-get install -y clang-4.0 clang-4.0-doc \
 libclang-common-4.0-dev libclang-4.0-dev libclang1-4.0 libclang1-4.0-dbg \
