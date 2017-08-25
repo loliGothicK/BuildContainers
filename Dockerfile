@@ -20,9 +20,6 @@ RUN sudo apt-get update
 RUN echo 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' > /etc/apt/sources.list.d/llvm.list
 RUN echo 'deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' >> /etc/apt/sources.list.d/llvm.list
 RUN sudo apt-get update
-RUN sudo deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main
-RUN sudo deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main
-RUN sudo apt-get update
 RUN sudo wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
 RUN sudo apt-get update
 RUN sudo apt-get install clang-4.0 lldb-4.0
