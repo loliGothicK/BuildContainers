@@ -6,6 +6,8 @@ MAINTAINER Inamy
 RUN apt-get update && apt-get -y install sudo
 
 # Clang
+RUN deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
+RUN deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
 RUN sudo apt-get update && apt-get upgrade -y
 RUN sudo deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main
 RUN sudo deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main
