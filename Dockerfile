@@ -17,8 +17,8 @@ RUN sudo apt-get install gcc-6 g++-6 -y
 
 # Clang
 RUN sudo apt-get update
-RUN deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
-RUN deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
+RUN echo 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' > /etc/apt/sources.list.d/llvm.list
+RUN echo 'deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main' >> /etc/apt/sources.list.d/llvm.list
 RUN sudo apt-get update
 RUN sudo deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main
 RUN sudo deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main
