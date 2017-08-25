@@ -10,7 +10,7 @@ RUN sudo apt-get update && apt-get upgrade -y
 # GCC
 RUN sudo apt-get update
 RUN sudo apt-get install build-essential software-properties-common -y
-RUN sudo add-apt-get-repository ppa:ubuntu-toolchain-r/test -y
+RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
 RUN sudo apt-get update
 RUN sudo apt-get install gcc-snapshot -y
 RUN sudo apt-get update
