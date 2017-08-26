@@ -1,6 +1,7 @@
 FROM purplekarrot/base:latest
 
-RUN apt-get -qq update \
+RUN echo 'deb http://ftp.jp.debian.org/debian/ jessie main contrib non-free' >> /etc/apt/sources.list \
+    && apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends g++-4.8 \
     && rm -rf /var/lib/apt/lists/*
 
