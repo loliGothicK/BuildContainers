@@ -16,5 +16,3 @@ RUN VERSION=3.8 \
 
 ENV CC="/usr/bin/clang-3.8" \
     CXX="/usr/bin/clang++-3.8"
-
-COPY ./toolchain.cmake /
