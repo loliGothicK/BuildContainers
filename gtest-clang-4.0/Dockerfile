@@ -8,4 +8,4 @@ RUN git clone -q https://github.com/google/googletest.git /googletest \
   && cmake .. && make && make install \
   && cd / && rm -rf /googletest
 
-RUN apt-get --purge remove git && apt-get update && apt-get upgrade -y
+RUN apt-get --purge remove git -y && apt-get update && apt-get upgrade -y
