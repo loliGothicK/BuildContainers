@@ -7,3 +7,5 @@ RUN git clone -q https://github.com/google/googletest.git /googletest \
   && cd /googletest/build \
   && cmake .. && make && make install \
   && cd / && rm -rf /googletest
+
+RUN apt-get --purge remove git && apt-get update && apt-get upgrade -y
