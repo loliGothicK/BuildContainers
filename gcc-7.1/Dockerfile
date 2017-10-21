@@ -1,7 +1,7 @@
 FROM enumack/buildcontainers:base
 
-RUN apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends g++-7.1 \
+RUN sudo add-apt-repository -y ppa:jonathonf/gcc-7.1  \
+    && apt -qq install -y --no-install-recommends g++-7.1 \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CC="/usr/bin/gcc-7" \
