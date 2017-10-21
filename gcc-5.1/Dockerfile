@@ -11,7 +11,6 @@ RUN true \
         ca-certificates \
         cmake \
         make \
-        ninja-build \
         runit \
     && rm -rf /var/lib/apt/lists/*
 
