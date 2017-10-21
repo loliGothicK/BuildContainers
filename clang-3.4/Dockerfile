@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     build-essential\
     ca-certificates
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get upgrade -y
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     cmake \
