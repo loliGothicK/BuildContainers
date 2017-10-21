@@ -1,4 +1,4 @@
-FROM purplekarrot/base:latest
+FROM enumack/buildcontainers:base
 
 RUN sudo add-apt-repository ppa:jonathonf/gcc-7.1 \
     && sudo apt-get update \
