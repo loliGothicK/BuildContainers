@@ -1,10 +1,10 @@
 FROM enumack/buildcontainers:base
 
-RUN apt-get upgrade -y && apt-get update
-RUN sudo apt-get install -y software-properties-common && sudo apt-get update
+RUN apt upgrade -y && apt-get update
+RUN sudo apt install -y software-properties-common python-software-properties
 RUN sudo add-apt-repository ppa:jonathonf/gcc-7.1 \
-    && sudo apt-get update \
-    && apt-get -qq install -y --no-install-recommends g++-7 \
+    && sudo apt update \
+    && apt -qq install -y --no-install-recommends g++-7 \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CC="/usr/bin/gcc-7" \
