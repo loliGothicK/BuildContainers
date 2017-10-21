@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:xenial
 
 RUN apt-get update && apt-get upgrade
 
