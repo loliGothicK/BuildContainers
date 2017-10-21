@@ -1,4 +1,4 @@
-FROM ubuntu:zesty
+FROM gcc:7.1
 
 MAINTAINER LoliGothick "loligothick@gmail.com"
 
@@ -22,8 +22,6 @@ RUN buildDeps='git' \
     && git config --global advice.detachedHead false \
     && apt -qq purge --auto-remove -y $buildDeps \
     && rm -rf /var/lib/apt/lists/*
-
-RUN sudo apt install -y software-properties-common python-software-properties
 
 COPY . /
 
