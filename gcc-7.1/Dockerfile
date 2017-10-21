@@ -27,7 +27,7 @@ COPY . /
 
 ENTRYPOINT [ "./entrypoint.sh" ]
 
-ENV CC="/usr/bin/gcc-7" \
-    CXX="/usr/bin/g++-7" \
+ENV CC="gcc" \
+    CXX="g++" \
     COVERAGE_COMMAND="/usr/bin/gcov-7" \
     COVERAGE_FLAGS="--coverage"
