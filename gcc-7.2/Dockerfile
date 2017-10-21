@@ -1,4 +1,4 @@
-FROM gcc:7.1
+FROM gcc:7.2
 
 MAINTAINER LoliGothick "loligothick@gmail.com"
 
@@ -26,3 +26,8 @@ RUN buildDeps='git' \
 COPY . /
 
 ENTRYPOINT [ "./entrypoint.sh" ]
+
+ENV CC="gcc" \
+    CXX="g++" \
+    COVERAGE_COMMAND="/usr/bin/gcov-7" \
+    COVERAGE_FLAGS="--coverage"
