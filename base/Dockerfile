@@ -22,9 +22,5 @@ RUN buildDeps='git' \
     && apt -qq purge --auto-remove -y $buildDeps \
     && rm -rf /var/lib/apt/lists/*
 
-COPY . /
-
-ENTRYPOINT [ "./entrypoint.sh" ]
-
 ENV COVERAGE_COMMAND="/usr/bin/gcov-7" \
     COVERAGE_FLAGS="--coverage"
