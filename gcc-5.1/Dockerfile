@@ -24,7 +24,10 @@ RUN buildDeps='git' \
     && rm -rf /var/lib/apt/lists/*
 
 # Install gcc-5.1
-RUN sudo apt -qq install -y gcc-5.1 --no-install-recommends
+RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test \
+    && sudo apt-get update \
+    && sudo apt upgrade -y \
+    && sudo apt install -y gcc-5.1 --no-install-recommends
 
 COPY . /
 
