@@ -6,22 +6,22 @@ ENV HOME="/home/builder"
 RUN mkdir -p $HOME
 
 RUN true \
-    && apt -qq update \
-    && apt -qq install -y --no-install-recommends \
+    && apt-get -qq update \
+    && apt-get -qq install -y --no-install-recommends \
         ca-certificates \
         cmake \
         make \
         ninja-build \
         runit \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt-get/lists/*
 
 # Disable git warning about detached HEAD.
 RUN buildDeps='git' \
-    && apt -qq update \
-    && apt -qq install -y $buildDeps --no-install-recommends \
+    && apt-get -qq update \
+    && apt-get -qq install -y $buildDeps --no-install-recommends \
     && git config --global advice.detachedHead false \
-    && apt -qq purge --auto-remove -y $buildDeps \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get -qq purge --auto-remove -y $buildDeps \
+    && rm -rf /var/lib/apt-get/lists/*
 
 COPY . /
 
