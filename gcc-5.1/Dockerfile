@@ -1,17 +1,17 @@
-FROM ubuntu:xenial
+FROM gcc:5.1
 
 MAINTAINER LoliGothick "loligothick@gmail.com"
 
 ENV HOME="/home/builder"
 RUN mkdir -p $HOME
 
-# Install build tools
 RUN true \
     && apt -qq update \
     && apt -qq install -y --no-install-recommends \
         ca-certificates \
         cmake \
         make \
+        ninja-build \
         runit \
     && rm -rf /var/lib/apt/lists/*
 
@@ -22,12 +22,6 @@ RUN buildDeps='git' \
     && git config --global advice.detachedHead false \
     && apt -qq purge --auto-remove -y $buildDeps \
     && rm -rf /var/lib/apt/lists/*
-
-# Install gcc-5.1
-RUN sudo add-apt-repository ppa:ubuntu-toolchain-r/test \
-    && sudo apt-get update \
-    && sudo apt upgrade -y \
-    && sudo apt install -y gcc-5.1 --no-install-recommends
 
 COPY . /
 
