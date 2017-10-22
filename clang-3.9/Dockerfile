@@ -1,18 +1,6 @@
-FROM purplekarrot/base:latest
+FROM enumack/buildcontainers:base
 
-RUN VERSION=3.9 \
-    && apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends clang-${VERSION} iwyu \
-    && mkdir /tmp/clang-tidy \
-    && chown _apt /tmp/clang-tidy \
-    && cd /tmp/clang-tidy \
-    && apt-get -qq download clang-tidy-${VERSION} \
-    && dpkg -x clang-tidy-${VERSION}_*.deb . \
-    && cp usr/bin/clang-tidy-${VERSION} /usr/bin \
-    && cp usr/lib/llvm-${VERSION}/bin/clang-tidy /usr/lib/llvm-${VERSION}/bin/ \
-    && cd / \
-    && rm -rf /tmp/clang-tidy \
-    && rm -rf /var/lib/apt/lists/*
+RUN sudo apt -qq install clang-3.9 -y --no-install-recommends
 
 ENV CC="/usr/bin/clang-3.9" \
     CXX="/usr/bin/clang++-3.9"

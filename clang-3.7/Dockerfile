@@ -1,23 +1,6 @@
-FROM ubuntu:16.04
+FROM enumack/buildcontainers:base
 
+RUN sudo apt -qq install clang-3.7 -y --no-install-recommends
 
-RUN apt-get update && apt-get upgrade
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    git \
-    mercurial \
-    curl \
-    wget \
-    python \
-    build-essential\
-    ca-certificates
-
-RUN apt-get update && apt-get upgrade
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    cmake \
-    clang-3.7
-
-ENV \
-    CC="/usr/bin/clang-3.7" \
+ENV CC="/usr/bin/clang-3.7" \
     CXX="/usr/bin/clang++-3.7"
