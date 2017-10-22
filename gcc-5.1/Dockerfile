@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM debian:wheezy
 
 MAINTAINER LoliGothick "loligothick@gmail.com"
 
