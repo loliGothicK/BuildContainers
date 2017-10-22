@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM ubuntu:xenial
 
 MAINTAINER LoliGothick "loligothick@gmail.com"
 
@@ -19,7 +19,7 @@ RUN true \
 RUN buildDeps='git' \
     && apt -qq update \
     && apt -qq install -y $buildDeps --no-install-recommends \
-    && apt config --global advice.detachedHead false \
+    && git config --global advice.detachedHead false \
     && apt -qq purge --auto-remove -y $buildDeps \
     && rm -rf /var/lib/apt/lists/*
 
