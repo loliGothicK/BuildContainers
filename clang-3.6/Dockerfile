@@ -1,17 +1,22 @@
 FROM enumack/buildcontainers:base
 
-RUN VERSION=3.6 \
-    && apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends clang-${VERSION} iwyu \
-    && mkdir /tmp/clang-tidy \
-    && cd /tmp/clang-tidy \
-    && apt-get -qq download clang-tidy-${VERSION} \
-    && dpkg -x clang-tidy-${VERSION}_*.deb . \
-    && cp usr/bin/clang-tidy-${VERSION} /usr/bin \
-    && cp usr/lib/llvm-${VERSION}/bin/clang-tidy /usr/lib/llvm-${VERSION}/bin/ \
-    && cd / \
-    && rm -rf /tmp/clang-tidy \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-add-repository -y "deb http://llvm.org/apt/trusty llvm-toolchain-trusty main"
+RUN apt-add-repository -y "deb http://llvm.org/apt/trusty llvm-toolchain-trusty-3.6 main"
+RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key|sudo apt-key add -
+RUN apt-get update -qq
+RUN apt-get install -qq clang-3.6 llvm-3.6
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 90
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.6 90
+RUN rm -rf /var/lib/apt/lists/*
 
-ENV CC="/usr/bin/clang-3.6" \
-    CXX="/usr/bin/clang++-3.6"
+ENV CC="clang" \
+    CXX="clang++"
+
+RUN echo "--- Build Enviroment ---"
+RUN gcc --version | grep gcc
+RUN g++ --version | grep g++
+RUN lcov --version | grep version
+RUN clang --version | grep version
+RUN clang++ --version | grep version
+RUN cmake --version | grep version
+RUN echo "------------------------"
