@@ -1,19 +1,13 @@
-FROM ubuntu:xenial
+FROM nwtgck/llvm-clang:3.8.1
 
 RUN apt-get update && apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+      libc++-dev \
       git \
-      mercurial \
-      curl \
-      wget \
-      python \
-      build-essential\
-      ca-certificates \
       cmake \
-      clang-4.0 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git config --global advice.detachedHead false
 
-ENV CC="/usr/bin/clang-4.0" \
-    CXX="/usr/bin/clang++-4.0"
+ENV CC="clang-3.8.1" \
+    CXX="clang++-3.8.1"
