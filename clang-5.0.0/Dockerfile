@@ -3,7 +3,7 @@ FROM nwtgck/llvm-clang:5.0.0
 # Install Build Dependency:
 RUN apt-get update && apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      svn \
+      subversion \
       git \
       cmake \
     && rm -rf /var/lib/apt/lists/*
