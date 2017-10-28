@@ -16,7 +16,7 @@ RUN cd /tmp \
 
 # Build libc++:
 RUN cd /tmp/libcxx/build \
-  && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CONFIG_PATH=/usr/bin/llvm-config-5.0.0 -DCMAKE_INSTALL_PREFIX=/usr .. \
+  && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CONFIG_PATH=llvm-config-5.0.0 -DCMAKE_INSTALL_PREFIX=/usr .. \
   && make install
 
 # Build c++abi:
@@ -27,14 +27,14 @@ RUN cd /tmp/libcxxabi/build \
   && cmake -G "Unix Makefiles" -DLIBCXX_CXX_ABI=libstdc++ \
       -DLIBCXX_LIBSUPCXX_INCLUDE_PATHS="$CPP_INCLUDE_PATHS" \
       -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
-      -DLLVM_CONFIG_PATH=/usr/bin/llvm-config-5.0.0 \
+      -DLLVM_CONFIG_PATH=llvm-config-5.0.0 \
       -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include  .. \
   && make install
 
 # Rebuild libc++ with proper ABI lib deployed on system: 
 RUN cd /tmp/libcxx/build \
   && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
-      -DLIBCXX_CXX_ABI=libcxxabi -DLLVM_CONFIG_PATH=/usr/bin/llvm-config-5.0.0\
+      -DLIBCXX_CXX_ABI=libcxxabi -DLLVM_CONFIG_PATH=llvm-config-5.0.0\
       -DLIBCXX_CXX_ABI_INCLUDE_PATHS=../../libcxxabi/include .. \
   && make install
 
