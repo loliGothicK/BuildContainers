@@ -38,8 +38,12 @@ RUN cd /tmp/libcxx/build \
       -DLIBCXX_CXX_ABI_INCLUDE_PATHS=../../libcxxabi/include .. \
   && make install
 
-# Turn off warning
+# Turn off warning:
 RUN git config --global advice.detachedHead false
 
+# Clean:
+RUN cd /tmp && rm -rf libcxx libcxxabi
+
+# Set env: clang
 ENV CC="clang-5.0.0" \
     CXX="clang++-5.0.0"
