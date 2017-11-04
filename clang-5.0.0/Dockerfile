@@ -16,7 +16,13 @@ RUN cd /tmp \
 
 # Build libc++:
 RUN cd /tmp/libcxx/build \
-  && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CONFIG_PATH=llvm-config-5.0.0 -DCMAKE_INSTALL_PREFIX=/usr .. \
+  && cmake .. \
+   -DCMAKE_BUILD_TYPE=Release \
+   -DLLVM_CONFIG_PATH=llvm-config-5.0.0 \
+   -DLIBCXX_INCLUDE_BENCHMARKS=NO \
+   -DLIBCXX_ENABLE_EXPERIMENTAL_LIBRARY=NO \
+   -DLIBCXX_INSTALL_EXPERIMENTAL_LIBRARY=NO \
+   -DLIBCXX_ENABLE_FILESYSTEM=NO  \
   && make install
 
 # Build c++abi:
