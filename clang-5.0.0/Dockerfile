@@ -24,23 +24,6 @@ RUN apt-get update && apt-get upgrade -y \
       -DLIBCXX_ENABLE_STATIC=NO \
       -DLIBCXX_ENABLE_FILESYSTEM=NO \
   && make install \
-# Build c++abi:
-  && cd /tmp/libcxxabi/build \
-  && CPP_INCLUDE_PATHS=echo | c++ -Wp,-v -x c++ - -fsyntax-only 2>&1 \
-  |grep ' /usr'|tr '\n' ' '|tr -s ' ' |tr ' ' ';' \
-  && CPP_INCLUDE_PATHS="/usr/include/c++/v1/;$CPP_INCLUDE_PATHS" \
-  && cmake -G "Unix Makefiles" -DLIBCXX_CXX_ABI=libstdc++ \
-      -DLIBCXX_LIBSUPCXX_INCLUDE_PATHS="$CPP_INCLUDE_PATHS" \
-      -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
-      -DLLVM_CONFIG_PATH=llvm-config-5.0.0 \
-      -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include  .. \
-  && make install \
-# Rebuild libc++ with proper ABI lib deployed on system: 
-  && cd /tmp/libcxx/build \
-  && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
-      -DLIBCXX_CXX_ABI=libcxxabi -DLLVM_CONFIG_PATH=llvm-config-5.0.0\
-      -DLIBCXX_CXX_ABI_INCLUDE_PATHS=../../libcxxabi/include .. \
-  && make install \
 # Turn off warning:
   && git config --global advice.detachedHead false \
 # Clean:
