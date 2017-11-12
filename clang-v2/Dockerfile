@@ -1,4 +1,4 @@
-FROM buildpack-deps/sid
+FROM buildpack-deps:sid
 
 RUN VERSION=5.0 \
     && apt-get -qq update \
