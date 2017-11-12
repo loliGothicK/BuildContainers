@@ -7,10 +7,9 @@ ENV HOME="/home/builder"
 
 RUN mkdir -p $HOME \
     && apt -qq update \
-    && buildDeps='git ca-certificates cmake make' \
+    && buildDeps='cmake' \
     && apt -qq install -y $buildDeps --no-install-recommends \
     && git config --global advice.detachedHead false \
-    && apt -qq purge --auto-remove -y $buildDeps \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CC="gcc" \
