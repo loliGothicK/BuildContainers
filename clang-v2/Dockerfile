@@ -20,7 +20,7 @@ RUN VERSION=tags/RELEASE_500/final \
     &&  cmake -G "Unix Makefiles" \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=/usr/local ../llvm \
-    && make \
+    && make -j4 \
     && sudo make install \
   # Checkout libc++ and libc++abi:
     && cd /tmp \
