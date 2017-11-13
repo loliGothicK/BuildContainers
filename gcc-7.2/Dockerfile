@@ -7,7 +7,7 @@ ENV HOME="/home/builder"
 
 RUN mkdir -p $HOME \
     && apt -qq update \
-    && buildDeps='cmake' \
+    && buildDeps='cmake git' \
     && apt -qq install -y $buildDeps --no-install-recommends \
     && git config --global advice.detachedHead false \
     && rm -rf /var/lib/apt/lists/*
