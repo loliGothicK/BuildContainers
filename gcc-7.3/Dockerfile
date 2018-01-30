@@ -2,8 +2,6 @@ FROM gcc:7.3
 
 LABEL maintainer="loligothick@gmail.com"
 
-ENV HOME="/home/builder"
-
 RUN buildDeps='git cmake ninja-build' \
     && set -x \
     && apt update && apt install -y $buildDeps --no-install-recommends \
