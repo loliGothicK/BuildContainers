@@ -1,10 +1,11 @@
 FROM gcc:7.3
 
 LABEL maintainer="loligothick@gmail.com"
-
-RUN buildDeps='git cmake ninja-build' \
-    && set -x \
-    && apt update && apt install -y $buildDeps --no-install-recommends \
+ENV HOME="/home/builder"
+RUN buildDeps='cmake git' \
+    && mkdir -p $HOME \
+    && apt -qq update \
+    && apt -qq install -y --no-install-recommends \
     && git config --global advice.detachedHead false \
     && apt -qq purge --auto-remove -y $buildDeps \
     && rm -rf /var/lib/apt/lists/*

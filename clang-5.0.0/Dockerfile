@@ -1,4 +1,4 @@
-FROM nwtgck/llvm-clang:5.0.0
+FROM buildpack-deps:sid
 
 # Install Build Dependency:
 RUN apt-get update && apt-get upgrade -y \
@@ -9,26 +9,18 @@ RUN apt-get update && apt-get upgrade -y \
   && rm -rf /var/lib/apt/lists/* \
 # Checkout libc++ & c++abi:
   && cd /tmp \
-  && svn co http://llvm.org/svn/llvm-project/libcxx/branches/release_50/ libcxx \
-  && svn co http://llvm.org/svn/llvm-project/libcxxabi/branches/release_50/ libcxxabi \
-  && mkdir -p libcxx/build libcxxabi/build \
-# Build libc++:
-  && cd /tmp/libcxx/build \
-  && cmake .. \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DLLVM_CONFIG_PATH=llvm-config-5.0.0 \
-      -DLIBCXX_INCLUDE_BENCHMARKS=NO \
-      -DLIBCXX_ENABLE_EXPERIMENTAL_LIBRARY=NO \
-      -DLIBCXX_INSTALL_EXPERIMENTAL_LIBRARY=NO \
-      -DLIBCXX_ENABLE_SHARED=YES \
-      -DLIBCXX_ENABLE_STATIC=NO \
-      -DLIBCXX_ENABLE_FILESYSTEM=NO \
+  && svn co http://llvm.org/svn/llvm-project/llvm/branches/release_50 llvm \
+  && cd ./llvm/tools \
+  && svn co http://llvm.org/svn/llvm-project/libcxx/branches/release_50 clang \
+  && cd ../.. \
+  && mkdir build \
+  && cd build \
+  && cmake -G "Unix Makefiles" ../llvm \
   && make install \
-# Turn off warning:
-  && git config --global advice.detachedHead false \
-# Clean:
-  && cd /tmp && rm -rf libcxx libcxxabi
+  && cd /tmp \
+  && rm -rf * \
+# Turn off warning
+  && git config --global advice.detachedHead false
 
-# Set env: clang
-ENV CC="clang-5.0.0" \
-    CXX="clang++-5.0.0"
+ENV CC="clang" \
+    CXX="clang++"

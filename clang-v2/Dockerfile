@@ -1,6 +1,6 @@
 FROM buildpack-deps:sid
 
-RUN VERSION=tags/RELEASE_380/final \
+RUN VERSION=tags/release_60/ \
     && apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends \
         cmake \
@@ -24,7 +24,7 @@ RUN VERSION=tags/RELEASE_380/final \
     && make install \
   # Checkout libc++:
     && cd /tmp \
-    && svn co http://llvm.org/svn/llvm-project/libcxx/branches/release_50/ libcxx \
+    && svn co http://llvm.org/svn/llvm-project/libcxx/branches/$VERSION libcxx \
     && mkdir -p libcxx/build \
   # Build libc++:
     && cd /tmp/libcxx/build \
