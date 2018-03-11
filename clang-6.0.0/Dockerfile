@@ -7,9 +7,9 @@ RUN apt-get update && apt-get upgrade -y \
   && rm -rf /var/lib/apt/lists/* \
 # Checkout libc++ & c++abi:
   && cd /tmp \
-  && svn co http://llvm.org/svn/llvm-project/llvm/branches/release_50 llvm \
+  && svn co http://llvm.org/svn/llvm-project/llvm/branches/release_60 llvm \
   && cd ./llvm/tools \
-  && svn co http://llvm.org/svn/llvm-project/libcxx/branches/release_50 clang \
+  && svn co http://llvm.org/svn/llvm-project/libcxx/branches/release_60 clang \
   && cd ../.. \
   && mkdir build \
   && cd build \
