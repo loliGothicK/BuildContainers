@@ -1,12 +1,14 @@
 FROM gcc:7.3
 
 LABEL maintainer="loligothick@gmail.com"
+
 ENV HOME="/home/builder"
 
 RUN mkdir -p $HOME \
-    && apt-get -qq update \
-    && apt-get -qq install -y --no-install-recommends cmake \
-    && git config --global advice.detachedHead false \
+    && buildDeps = 'git' \
+    && apt -qq update \
+    && apt -qq install -y cmake --no-install-recommends \
+    && apt -qq purge --auto-remove -y git \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CC="gcc" \
