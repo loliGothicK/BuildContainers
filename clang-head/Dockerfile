@@ -1,6 +1,6 @@
 FROM buildpack-deps:sid
 
-RUN VERSION=tags/release_60/ \
+RUN VERSION=trunk/ \
     && apt-get -qq update \
     && apt-get -qq install -y --no-install-recommends \
         cmake \
