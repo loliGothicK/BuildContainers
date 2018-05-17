@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie-jessie
+FROM buildpack-deps:jessie
 
 # Install Build Dependency:
 RUN apt-get upgrade -y && apt-get update -y \
