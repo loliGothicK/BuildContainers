@@ -8,8 +8,8 @@ RUN apt-get upgrade -y && apt-get update -y \
   && apt-get update -y && apt-get upgrade -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       cmake \
-      clang-3.8.0 \ 
-      clang++-3.8.0 \
+      clang-3.8 \ 
+      clang++-3.8 \
   && rm -rf /var/lib/apt/lists/* \
 # Turn off warning
   && git config --global advice.detachedHead false
