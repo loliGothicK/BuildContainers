@@ -1,10 +1,10 @@
-FROM buildpack-deps:stretch
+FROM buildpack-deps:jessie
 
 # Install Build Dependency:
 RUN apt-get upgrade -y && apt-get update -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends software-properties-common\ 
   && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
-  && apt-add-repository "deb http://apt.llvm.org/stretch/ llvm-toolchain-stretch-3.9 main" \
+  && apt-add-repository "deb http://apt.llvm.org/jessie/ llvm-toolchain-jessie-3.9 main" \
   && apt-get update -y && apt-get upgrade -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
       cmake \
