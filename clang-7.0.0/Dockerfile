@@ -1,18 +1,17 @@
-FROM buildpack-deps:bionic
+FROM ubuntu:18.04
 
-# Install Build Dependency:
-RUN apt-get upgrade -y && apt-get update -y \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends software-properties-common\ 
-  && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
-  && apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-7.0 main" \
-  && apt-get update -y \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      cmake \
-      clang-7.0 \ 
-      clang++-7.0 \
-  && rm -rf /var/lib/apt/lists/* \
-# Turn off warning
-  && git config --global advice.detachedHead false
-
-ENV CC="clang-7.0" \
-    CXX="clang++-7.0"
+RUN buildDeps='wget software-properties-common gpg-agent'; \
+  apt-get -y upgrade && apt-get -y update; \
+  apt-get install -y --no-install-recommends $buildDeps; \
+  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -; \
+  apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-7 main"; \
+  apt-get -y update; \
+  apt-get -y install --no-install-recommends \
+      make \
+			cmake \
+      clang-7 \
+      clang++-7; \
+  rm -rf /var/lib/apt/lists/*; \
+  apt-get purge -y --auto-remove $buildDeps
+ENV CC="clang-7" \
+    CXX="clang++-7"
