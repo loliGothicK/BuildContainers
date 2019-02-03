@@ -1,11 +1,14 @@
 FROM gcc:8.2
 
-RUN apt -qq update \
-    && apt -qq install -y cmake --no-install-recommends \
-    && apt -qq purge --auto-remove -y git \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get -qq update; \
+    apt-get -qq install -y --no-install-recommends \
+      libboost-all-dev; \
+    wget https://github.com/Kitware/CMake/releases/download/v3.13.3/cmake-3.13.3.tar.gz; \
+    tar xvf ./cmake-3.13.3.tar.gz; \
+    cd cmake-3.13.3 && ./bootstrap && make && make install; \
+    cd .. && rm -rf cmake-3.13.3; \
+    apt-get -qq purge --auto-remove -y git; \
+    rm -rf /var/lib/apt/lists/*
 
 ENV CC="gcc" \
     CXX="g++" \
-    COVERAGE_COMMAND="/usr/bin/gcov-7" \
-    COVERAGE_FLAGS="--coverage"

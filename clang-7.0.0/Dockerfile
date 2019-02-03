@@ -8,9 +8,10 @@ RUN buildDeps='wget software-properties-common gpg-agent'; \
   apt-get -y update; \
   apt-get -y install --no-install-recommends \
       make \
-			cmake \
+      cmake \
       clang-7 \
-      clang++-7; \
+      clang++-7 \
+      libboost-all-dev; \
   rm -rf /var/lib/apt/lists/*; \
   apt-get purge -y --auto-remove $buildDeps
 ENV CC="clang-7" \
